@@ -46,6 +46,21 @@ class CategoryViewControllerModel{
         }
         
     }
+    func fetchProductAPIWithIB(collection_id : String) {
+        apiService.fetchProductsCollections(collectionsID: collection_id) {  result in
+            switch result
+            {
+            case .success(let products):
+                
+                    self.processFetchedProduct(products: products!)
+                                        // self.collectionView.reloadData()
+            
+            case .failure(let error):
+                print(error)
+                }
+        }
+        
+    }
     
     func getCellViewModel( at indexPath: IndexPath ) -> ProductsCellModel {
         return cellViewModels[indexPath.row]
