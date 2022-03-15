@@ -7,8 +7,13 @@
 //
 
 import Foundation
+protocol NetworkServicesProtocol {
+      func fetchProducts(complation:@escaping(Result<[Products]?,Error>)->Void)
+      func fetchProductsCollections(collectionsID:String,complation:@escaping(Result<[Products]?,Error>)->Void)
+    
+}
 
-class NetworkServices{
+class NetworkServices:NetworkServicesProtocol {
     let spoidyfiURL = UrlConstants()
         func fetchProducts(complation:@escaping(Result<[Products]?,Error>)->Void){
             guard let url = URL(string: spoidyfiURL.productUrl) else {
